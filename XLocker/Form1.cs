@@ -160,12 +160,14 @@ namespace ByteLocker
 
         private static OpenFileDialog NewFileDialog(string defaultValue, string title)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Title = title;
-            fileDialog.RestoreDirectory = true;
-            fileDialog.InitialDirectory = Environment.SpecialFolder.MyDocuments.ToString();
-            fileDialog.CheckFileExists = true;
-            fileDialog.FileName = defaultValue;
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                Title = title,
+                RestoreDirectory = true,
+                InitialDirectory = Environment.SpecialFolder.MyDocuments.ToString(),
+                CheckFileExists = true,
+                FileName = defaultValue
+            };
             return fileDialog;
         }
 

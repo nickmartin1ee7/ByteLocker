@@ -15,16 +15,20 @@ namespace ByteLocker
     static class BusinessLogic
     {
         private static byte[] key;
+        private static byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        //private static string path;
 
         internal static bool Encrypt(string file, string _key)
         {
             key = Encoding.ASCII.GetBytes(_key);
+            //path = Path.GetDirectoryName(file);
             return FileHandler(file, true);
         }
 
         internal static bool Decrypt(string file, string _key)
         {
             key = Encoding.ASCII.GetBytes(_key);
+            //path = Path.GetDirectoryName(file);
             return FileHandler(file, false);
         }
 
@@ -165,6 +169,7 @@ namespace ByteLocker
             try
             {
                 b = XORCrypt(b, key);
+                //b = AESEncrypt(b, key);
                 b = Encoding.ASCII.GetBytes(Convert.ToBase64String(b));
                 return b;
             }
@@ -183,8 +188,9 @@ namespace ByteLocker
         {
             try
             {
-                String s = Encoding.ASCII.GetString(b);
+                string s = Encoding.ASCII.GetString(b);
                 b = Convert.FromBase64String(s);
+                //b = AESDecrypt(b, key);
                 b = XORCrypt(b, key);
                 return b;
             }
@@ -202,14 +208,44 @@ namespace ByteLocker
         #endregion
 
         #region Not implemented cryptography
-        private static byte[] RSAEncrypt(byte[] plainData)
+        private static byte[] AESEncrypt(byte[] plainData, byte[] key)
         {
-            return plainData;
+            SymmetricAlgorithm crypt = Aes.Create();
+            HashAlgorithm hash = MD5.Create();
+            crypt.BlockSize = 128;
+            crypt.Key = hash.ComputeHash(key);
+            crypt.IV = IV;
+
+            byte[] cipherData = new byte[plainData.Length];
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (CryptoStream cryptoStream =
+                   new CryptoStream(memoryStream, crypt.CreateEncryptor(), CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(cipherData, 0, cipherData.Length);
+                }
+                return cipherData;
+            }
         }
 
-        private static byte[] RSADecrypt(byte[] cipherData)
+        private static byte[] AESDecrypt(byte[] cipherData, byte[] key)
         {
-            return cipherData;
+            byte[] plainData = new byte[cipherData.Length];
+            SymmetricAlgorithm crypt = Aes.Create();
+            HashAlgorithm hash = MD5.Create();
+            crypt.Key = hash.ComputeHash(key);
+            crypt.IV = IV;
+
+            using (MemoryStream memoryStream = new MemoryStream(cipherData))
+            {
+                using (CryptoStream cryptoStream =
+                   new CryptoStream(memoryStream, crypt.CreateDecryptor(), CryptoStreamMode.Read))
+                {
+                    plainData = new byte[plainData.Length];
+                    cryptoStream.Read(plainData, 0, plainData.Length);
+                }
+            }
+            return plainData;
         }
         #endregion 
 
