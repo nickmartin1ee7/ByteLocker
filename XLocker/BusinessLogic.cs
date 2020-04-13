@@ -37,12 +37,14 @@ namespace ByteLocker
         {
             path = path.Substring(0, path.IndexOf(Regex.Match(path, @"(?!\\)[^\\]*\\[^\\]*$").Value));  // Thank you, Termininja (https://stackoverflow.com/questions/34413374/how-to-find-the-second-last-indexof-a-value-in-a-string/34413521)
             Random r = new Random(DateTime.Now.Millisecond);
-            string autoKeyString = "";
+            //RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+
+            char[] autoKeyCharArray = new char[fileLen];
 
             for (int i = 0; i < fileLen; i++)
-                autoKeyString += (char)r.Next(33, 126 + 1);
+                autoKeyCharArray[i] = (char)r.Next(33, 126 + 1);
 
-            key = Encoding.ASCII.GetBytes(autoKeyString);
+            key = Encoding.ASCII.GetBytes(autoKeyCharArray);
 
             string keyFile = path + $"key_{r.Next()}.txt";
             using (FileStream fs = new FileStream(keyFile, FileMode.Create, FileAccess.Write))

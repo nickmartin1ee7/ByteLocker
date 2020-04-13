@@ -15,6 +15,7 @@ namespace ByteLocker
     public partial class Form1 : Form
     {
         bool[] task = new bool[2];
+        string key = "";
 
         #region Form ctor
         public Form1()
@@ -77,7 +78,7 @@ namespace ByteLocker
             {
                 if (task[0])
                 {
-                    bool f = BusinessLogic.Encrypt(selectedFileTextBox.Text, keyTextBox.Text);
+                    bool f = BusinessLogic.Encrypt(selectedFileTextBox.Text, key);
                     if (f)
                         backgroundWorker.ReportProgress(100);
                     else
@@ -85,7 +86,7 @@ namespace ByteLocker
                 }
                 else if (task[1])
                 {
-                    bool f = BusinessLogic.Decrypt(selectedFileTextBox.Text, keyTextBox.Text);
+                    bool f = BusinessLogic.Decrypt(selectedFileTextBox.Text, key);
                     if (f)
                         backgroundWorker.ReportProgress(100);
                     else
@@ -154,9 +155,7 @@ namespace ByteLocker
         {
             OpenFileDialog fileDialog = NewFileDialog("key.txt", "Open Key File");
             if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                keyTextBox.Text = File.ReadAllText(fileDialog.FileName);
-            }
+                keyTextBox.Text = Path.GetFullPath(fileDialog.FileName);
         }
 
         private static OpenFileDialog NewFileDialog(string defaultValue, string title)
@@ -168,6 +167,19 @@ namespace ByteLocker
             fileDialog.CheckFileExists = true;
             fileDialog.FileName = defaultValue;
             return fileDialog;
+        }
+
+        private void keyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            KeyChange();
+        }
+
+        private void KeyChange()
+        {
+            if (File.Exists(keyTextBox.Text))
+                key = File.ReadAllText(keyTextBox.Text);
+            else
+                key = keyTextBox.Text;
         }
     }
 }

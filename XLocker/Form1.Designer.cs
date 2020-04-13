@@ -100,12 +100,11 @@
             this.keyTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.keyTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.keyTextBox.Location = new System.Drawing.Point(48, 12);
-            this.keyTextBox.MaxLength = 2097152;
             this.keyTextBox.Name = "keyTextBox";
             this.keyTextBox.Size = new System.Drawing.Size(292, 20);
             this.keyTextBox.TabIndex = 0;
-            this.keyTextBox.UseSystemPasswordChar = true;
             this.keyTextBox.WordWrap = false;
+            this.keyTextBox.TextChanged += new System.EventHandler(this.keyTextBox_TextChanged);
             // 
             // keyLabel
             // 
