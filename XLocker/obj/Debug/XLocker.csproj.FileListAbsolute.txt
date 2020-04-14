@@ -1,9 +1,0 @@
-C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\XLocker.exe.config
-C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\XLocker.exe
-C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\XLocker.pdb
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.Form1.resources
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.Properties.Resources.resources
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.csproj.GenerateResource.cache
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.csproj.CoreCompileInputs.cache
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.exe
-C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\XLocker.pdb

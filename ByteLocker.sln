@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29924.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteLocker", "XLocker\ByteLocker.csproj", "{3D83768A-33CC-41B1-BF00-70072855837A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteLocker", "ByteLocker\ByteLocker.csproj", "{3D83768A-33CC-41B1-BF00-70072855837A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

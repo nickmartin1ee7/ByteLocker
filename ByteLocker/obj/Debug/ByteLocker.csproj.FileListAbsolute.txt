@@ -1,0 +1,10 @@
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.csprojAssemblyReference.cache
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.csproj.GenerateResource.cache
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.csproj.CoreCompileInputs.cache
+C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\ByteLocker.exe.config
+C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\ByteLocker.exe
+C:\Users\doort\source\repos\XLocker\XLocker\bin\Debug\ByteLocker.pdb
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.exe
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.pdb
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.Form1.resources
+C:\Users\doort\source\repos\XLocker\XLocker\obj\Debug\ByteLocker.Properties.Resources.resources
