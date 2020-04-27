@@ -11,7 +11,6 @@ C:\Users\doort\source\repos\XLocker\XLocker\obj\Release\ByteLocker.pdb
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\bin\Release\ByteLocker.exe.config
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\bin\Release\ByteLocker.exe
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\bin\Release\ByteLocker.pdb
-C:\Users\doort\source\repos\ByteLocker\ByteLocker\obj\Release\ByteLocker.csprojAssemblyReference.cache
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\obj\Release\ByteLocker.Form1.resources
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\obj\Release\ByteLocker.Properties.Resources.resources
 C:\Users\doort\source\repos\ByteLocker\ByteLocker\obj\Release\ByteLocker.csproj.GenerateResource.cache

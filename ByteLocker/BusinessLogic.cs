@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ByteLocker
@@ -15,7 +11,7 @@ namespace ByteLocker
     static class BusinessLogic
     {
         private static byte[] key;
-        private static byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+        private static byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };   // TODO: Pending change for AES
         //private static string path;
 
         internal static bool Encrypt(string file, string _key)
@@ -70,7 +66,7 @@ namespace ByteLocker
                 {
                     string[] files = Directory.GetFiles(file);
                     List<bool> successes = new List<bool>();
-                    for (int i = 0; i < files.Length; i ++)
+                    for (int i = 0; i < files.Length; ++i)
                     {
                         successes.Add(ContentsHandler(files[i], isPlainText));
                     }
@@ -196,7 +192,7 @@ namespace ByteLocker
             }
             catch (FormatException e)
             {
-                Console.WriteLine("Not base64 format\n" +e);
+                Console.WriteLine("Not base64 format\n" + e);
                 return null;
             }
             catch (Exception e)
