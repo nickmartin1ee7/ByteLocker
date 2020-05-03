@@ -10,27 +10,26 @@ namespace ByteLocker
 {
     static class BusinessLogic
     {
-        private static byte[] key;
-        private static byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };   // TODO: Pending change for AES
-        //private static string path;
+        private static byte[] Key;
+        //private static byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };   // TODO: Pending change for AES
 
         internal static bool Encrypt(string file, string _key)
         {
-            key = Encoding.ASCII.GetBytes(_key);
+            Key = Encoding.ASCII.GetBytes(_key);
             //path = Path.GetDirectoryName(file);
             return FileHandler(file, true);
         }
 
         internal static bool Decrypt(string file, string _key)
         {
-            key = Encoding.ASCII.GetBytes(_key);
+            Key = Encoding.ASCII.GetBytes(_key);
             //path = Path.GetDirectoryName(file);
             return FileHandler(file, false);
         }
 
         private static DialogResult WarnSecurity(long fileLen)
         {
-            return MessageBox.Show($"Warning! Key size ({key.Length}) is less than file content ({fileLen}) size. It's recommended to use a key of equal length or else the encryption will be vulnerable to cracking.\n\nDo you want to autogenerate a secure key?", "ByteLocker - Security Warning", MessageBoxButtons.YesNoCancel);
+            return MessageBox.Show($"Warning! Key size ({Key.Length}) is less than file content ({fileLen}) size. It's recommended to use a key of equal length or else the encryption will be vulnerable to cracking.\n\nDo you want to autogenerate a secure key?", "ByteLocker - Security Warning", MessageBoxButtons.YesNoCancel);
         }
 
         private static void GenAutoKey(string path, long fileLen)
@@ -44,12 +43,12 @@ namespace ByteLocker
             for (int i = 0; i < fileLen; i++)
                 autoKeyCharArray[i] = (char)r.Next(33, 126 + 1);
 
-            key = Encoding.ASCII.GetBytes(autoKeyCharArray);
+            Key = Encoding.ASCII.GetBytes(autoKeyCharArray);
 
             string keyFile = path + $"key_{r.Next()}.txt";
             using (FileStream fs = new FileStream(keyFile, FileMode.Create, FileAccess.Write))
             {
-                fs.Write(key, 0, key.Length);
+                fs.Write(Key, 0, Key.Length);
                 MessageBox.Show("Key stored at:\n" + keyFile);
             }
         }
@@ -90,7 +89,7 @@ namespace ByteLocker
             {
                 long fileLen = new FileInfo(file).Length;
                 DialogResult makeSecure = DialogResult.No;
-                if (key.Length < fileLen)
+                if (Key.Length < fileLen)
                     makeSecure = WarnSecurity(fileLen);
                 if (makeSecure == DialogResult.Yes)
                 {
@@ -124,9 +123,9 @@ namespace ByteLocker
 
                     // Modify
                     if (isPlainText)
-                        bytes = Encode(bytes, key);
+                        bytes = Encode(bytes, Key);
                     else
-                        bytes = Decode(bytes, key);
+                        bytes = Decode(bytes, Key);
 
                     // Out
                     try
@@ -204,6 +203,7 @@ namespace ByteLocker
         #endregion
 
         #region Not implemented cryptography
+        /**
         private static byte[] AESEncrypt(byte[] plainData, byte[] key)
         {
             SymmetricAlgorithm crypt = Aes.Create();
@@ -243,6 +243,7 @@ namespace ByteLocker
             }
             return plainData;
         }
+        **/
         #endregion 
 
         #region Implemented cryptography
